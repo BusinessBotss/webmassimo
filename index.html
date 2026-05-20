@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Massimo's — Authentic Pizza in Magaluf</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #F5F0E8;
+  --warm-white: #FDFAF4;
+  --char: #1C1A16;
+  --ember: #B83226;
+  --ember-dark: #8e2118;
+  --gold: #D89B45;
+  --green: #3F6B3B;
+  --muted: #7A7260;
+  --border: rgba(28,26,22,0.12);
+  --card-bg: #F4EAD7;
+  --dark-bg: #120d09;
+  --dark-card: #1b130d;
+  --dark-border: rgba(255,255,255,0.12);
+  --warm-text: #fff7e8;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--char); overflow-x: hidden; }
+
+/* ---- LANG SWITCHER ---- */
+.lang-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--char);
+  display: flex; justify-content: flex-end; align-items: center;
+  padding: 6px 32px; gap: 4px;
+}
+.lang-btn {
+  background: none; border: none; color: rgba(255,255,255,0.5);
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 8px; cursor: pointer; border-radius: 3px;
+  transition: all 0.2s;
+}
+.lang-btn:hover { color: #fff; }
+.lang-btn.active { color: var(--gold); background: rgba(255,255,255,0.08); }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 32px; left: 0; right: 0; z-index: 100;
+  padding: 16px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(245,240,232,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo img { height: 44px; width: auto; object-fit: contain; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  color: var(--muted); text-decoration: none; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ember); }
+.nav-order-btn {
+  padding: 10px 22px; background: var(--ember); color: #fff;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s;
+}
+.nav-order-btn:hover { background: var(--ember-dark); }
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 160px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,50,38,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(216,155,69,0.09) 0%, transparent 50%);
+}
+.hero-logo-img {
+  height: 120px; width: auto; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.9s 0.1s ease forwards;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 16px;
+  opacity: 0; animation: fadeUp 0.8s 0.3s ease forwards;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(58px, 9vw, 112px);
+  font-weight: 900; line-height: 0.92; letter-spacing: -3px;
+  color: var(--char);
+  opacity: 0; animation: fadeUp 0.9s 0.45s ease forwards;
+}
+.hero-title em { font-style: italic; color: var(--ember); }
+.hero-sub {
+  font-size: 17px; font-weight: 300; color: var(--muted);
+  max-width: 400px; margin: 24px auto 0; line-height: 1.75;
+  opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards;
+}
+.hero-btns {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  margin-top: 40px;
+  opacity: 0; animation: fadeUp 0.9s 0.75s ease forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 32px; background: var(--ember); color: #fff;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--ember-dark); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px; background: transparent; color: var(--char);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
+  text-decoration: none; border-radius: 2px;
+  border: 1px solid var(--border); transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--ember); color: var(--ember); }
+
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; animation: fadeIn 1s 1.3s ease forwards;
+}
+.hero-scroll span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.scroll-line { width: 1px; height: 44px; background: var(--ember); animation: scrollPulse 1.6s ease-in-out infinite; }
+
+/* ---- ABOUT ---- */
+.about {
+  padding: 110px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; max-width: 1200px; margin: 0 auto; align-items: center;
+}
+.about-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--ember); margin-bottom: 14px; }
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 50px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; color: var(--char); margin-bottom: 22px;
+}
+.about-title em { font-style: italic; color: var(--ember); }
+.about-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 14px; }
+
+.about-visual { position: relative; height: 460px; display: flex; align-items: center; justify-content: center; }
+.pizza-circle {
+  width: 320px; height: 320px; border-radius: 50%;
+  background: conic-gradient(from 0deg, #D4A843, #C94B1F, #8B2E0F, #D4A843, #C94B1F, #D4A843);
+  display: flex; align-items: center; justify-content: center;
+}
+.pizza-inner {
+  width: 210px; height: 210px; border-radius: 50%;
+  background: radial-gradient(circle, #C94B1F 0%, #8B2E0F 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.pizza-text {
+  font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic;
+  color: rgba(255,255,255,0.9); text-align: center; line-height: 1.5;
+}
+.pizza-badge {
+  position: absolute; padding: 9px 16px;
+  border: 1px solid var(--border); background: var(--card-bg);
+  border-radius: 100px; font-size: 13px; font-weight: 500; white-space: nowrap;
+}
+.badge-1 { top: 48px; right: 0; }
+.badge-2 { bottom: 64px; left: -16px; }
+.badge-3 { top: 170px; left: -36px; }
+
+/* ---- WHY US ---- */
+.why-section {
+  background: var(--char); padding: 80px 48px;
+}
+.why-inner { max-width: 1100px; margin: 0 auto; }
+.why-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; text-align: center; }
+.why-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px; font-weight: 700; font-style: italic; color: var(--warm-text);
+  text-align: center; margin-bottom: 52px;
+}
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.why-card {
+  background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border);
+  border-radius: 8px; padding: 28px 22px; text-align: center;
+}
+.why-icon { font-size: 28px; margin-bottom: 12px; }
+.why-card h4 { font-size: 16px; font-weight: 500; color: var(--warm-text); margin-bottom: 8px; }
+.why-card p { font-size: 14px; color: rgba(255,247,232,0.55); line-height: 1.6; }
+
+/* ---- MENU SECTION ---- */
+.menu-section {
+  background: radial-gradient(circle at top, #2a160d 0%, #120d09 45%, #080604 100%);
+  padding: 100px 24px; min-height: 100vh;
+}
+.menu-header { text-align: center; max-width: 640px; margin: 0 auto 52px; }
+.menu-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.menu-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 78px); font-weight: 900;
+  line-height: 0.95; letter-spacing: -2px; color: #f4ead7;
+}
+.menu-title em { font-style: italic; color: var(--ember); }
+.menu-sub { font-size: 15px; color: rgba(255,247,232,0.55); margin-top: 16px; line-height: 1.7; }
+
+/* Category tabs */
+.cat-tabs {
+  max-width: 1200px; margin: 0 auto 40px;
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  padding: 0 12px;
+}
+.cat-tab {
+  padding: 10px 22px; border: 1px solid var(--dark-border);
+  background: rgba(255,255,255,0.06); color: #fff7e8;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; border-radius: 100px; transition: all 0.2s;
+  white-space: nowrap;
+}
+.cat-tab:hover { border-color: var(--ember); color: #fff; }
+.cat-tab.active { background: var(--ember); border-color: var(--ember); color: #fff; }
+
+/* Menu layout */
+.menu-layout {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px; align-items: start;
+}
+.menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.cat-heading-dark {
+  grid-column: 1/-1;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; font-style: italic;
+  color: #f4ead7; padding-bottom: 10px;
+  border-bottom: 1px solid var(--dark-border);
+  margin-bottom: 4px; margin-top: 12px;
+}
+
+/* Menu card */
+.menu-card {
+  background: var(--card-bg); color: #1e1a17;
+  border-radius: 16px; padding: 20px 22px;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 160px; transition: transform 0.2s;
+}
+.menu-card:hover { transform: translateY(-3px); }
+.card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 6px; line-height: 1.2;
+}
+.card-ing { font-size: 13px; color: #5a4a3a; line-height: 1.55; margin-bottom: 14px; flex: 1; }
+.card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.card-price { font-size: 18px; font-weight: 700; color: var(--ember); }
+.add-btn {
+  border: none; background: var(--ember); color: #fff7e8;
+  border-radius: 100px; padding: 8px 18px;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; white-space: nowrap;
+}
+.add-btn:hover { background: var(--ember-dark); }
+
+/* Order summary */
+.order-summary {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--dark-border);
+  border-radius: 20px; padding: 22px;
+  position: sticky; top: 120px;
+  backdrop-filter: blur(18px);
+  color: var(--warm-text);
+}
+.summary-title {
+  font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+  color: #f4ead7; margin-bottom: 16px;
+}
+.order-list { min-height: 60px; }
+.order-empty { font-size: 14px; color: rgba(255,247,232,0.4); padding: 12px 0; }
+.order-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 8px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.order-row-info { font-size: 13px; flex: 1; }
+.order-row-name { font-weight: 500; color: #f4ead7; display: block; }
+.order-row-qty { color: rgba(255,247,232,0.5); font-size: 12px; }
+.order-row-price { font-size: 14px; font-weight: 600; color: var(--gold); white-space: nowrap; }
+.order-row-remove {
+  background: none; border: none; color: rgba(255,247,232,0.3);
+  font-size: 18px; cursor: pointer; padding: 2px 6px; line-height: 1;
+  transition: color 0.2s;
+}
+.order-row-remove:hover { color: var(--ember); }
+
+.order-total {
+  display: flex; justify-content: space-between;
+  border-top: 1px solid var(--dark-border);
+  padding-top: 14px; margin-top: 14px;
+  font-size: 15px;
+}
+.order-total span { color: rgba(255,247,232,0.6); }
+.order-total strong { color: var(--gold); font-size: 20px; }
+
+.order-form { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.order-form input, .order-form textarea {
+  width: 100%; background: rgba(0,0,0,0.28);
+  border: 1px solid var(--dark-border); color: var(--warm-text);
+  border-radius: 10px; padding: 12px 14px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  transition: border-color 0.2s;
+}
+.order-form input::placeholder, .order-form textarea::placeholder { color: rgba(255,247,232,0.3); }
+.order-form input:focus, .order-form textarea:focus { outline: none; border-color: var(--gold); }
+.order-form textarea { resize: vertical; min-height: 72px; }
+.order-note { font-size: 12px; color: rgba(255,247,232,0.4); line-height: 1.5; margin-top: 4px; }
+
+.whatsapp-btn {
+  width: 100%; margin-top: 14px; padding: 15px;
+  background: var(--green); color: #fff7e8;
+  border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  letter-spacing: 0.3px; cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.whatsapp-btn:hover { background: #2d5029; }
+.whatsapp-btn svg { width: 18px; height: 18px; }
+
+/* ---- LOCATION ---- */
+.location-section {
+  background: var(--cream); padding: 90px 48px;
+  text-align: center;
+}
+.location-inner { max-width: 600px; margin: 0 auto; }
+.location-inner .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--ember); margin-bottom: 14px; }
+.location-title {
+  font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700;
+  letter-spacing: -1px; color: var(--char); margin-bottom: 20px;
+}
+.location-title em { font-style: italic; color: var(--ember); }
+.location-text { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 12px; }
+
+/* ---- FOOTER ---- */
+footer {
+  padding: 56px 48px; background: var(--char);
+  color: rgba(255,255,255,0.4); text-align: center;
+}
+.footer-logo-img { height: 56px; width: auto; margin-bottom: 14px; filter: brightness(0) invert(1); opacity: 0.85; }
+.footer-tag { font-size: 14px; margin-bottom: 24px; }
+.footer-info { font-size: 13px; line-height: 2; }
+.footer-info a { color: var(--gold); text-decoration: none; }
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrollPulse { 0%,100% { transform: scaleY(1); transform-origin: top; } 50% { transform: scaleY(0.4); transform-origin: top; } }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  nav { padding: 14px 20px; top: 32px; }
+  .nav-links { display: none; }
+  .nav-order-btn { display: none; }
+  .hero { padding: 140px 24px 60px; }
+  .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+  .about-visual { height: 300px; }
+  .pizza-circle { width: 240px; height: 240px; }
+  .pizza-inner { width: 155px; height: 155px; }
+  .why-section { padding: 60px 24px; }
+  .menu-layout { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .order-summary { position: static; margin-top: 32px; }
+  .location-section { padding: 70px 24px; }
+  footer { padding: 48px 24px; }
+}
+@media (max-width: 480px) {
+  .hero-logo-img { height: 80px; }
+  .pizza-circle { width: 200px; height: 200px; }
+  .pizza-inner { width: 130px; height: 130px; }
+  .badge-1, .badge-2, .badge-3 { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" onclick="setLang('it')">IT</button>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's Logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav_story">Our Story</a></li>
+    <li><a href="#menu" data-i18n="nav_menu">Menu</a></li>
+    <li><a href="#visit" data-i18n="nav_visit">Visit</a></li>
+  </ul>
+  <a href="#menu" class="nav-order-btn" data-i18n="nav_order">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <img class="hero-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's">
+  <p class="hero-eyebrow" data-i18n="hero_eyebrow">Magaluf · Heart of the Island</p>
+  <h1 class="hero-title">Massimo's<br><em data-i18n="hero_title_sub">Pizzeria</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Right in the heart of Magaluf. No bookings, just good pizza — fresh, fast, and full of flavor.</p>
+  <div class="hero-btns">
+    <a href="#menu" class="btn-primary" data-i18n="hero_cta_menu">View Menu</a>
+    <a href="#visit" class="btn-secondary" data-i18n="hero_cta_visit">Visit Now</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span data-i18n="scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <p class="about-label" data-i18n="about_label">Our Passion</p>
+    <h2 class="about-title" data-i18n="about_title">Crafting Pizza,<br><em>Creating Memories</em></h2>
+    <p class="about-text" data-i18n="about_p1">At Massimo's, we believe pizza is more than food — it's an experience. We're dedicated to bringing authentic Italian flavors to Magaluf, using fresh, locally-sourced ingredients.</p>
+    <p class="about-text" data-i18n="about_p2">Every dough stretched by hand, every sauce slow-cooked from scratch. Walk in, sit down, and let us do the rest.</p>
+  </div>
+  <div class="about-visual">
+    <div class="pizza-circle">
+      <div class="pizza-inner">
+        <p class="pizza-text" data-i18n="pizza_motto">Made with<br>love &amp; fire</p>
+      </div>
+    </div>
+    <div class="pizza-badge badge-1" data-i18n="badge_fresh">🍅 Fresh ingredients</div>
+    <div class="pizza-badge badge-2" data-i18n="badge_fire">🔥 Wood-fired flavor</div>
+    <div class="pizza-badge badge-3" data-i18n="badge_authentic">🇮🇹 Authentic recipes</div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="why-inner">
+    <p class="why-label" data-i18n="why_label">Why Massimo's</p>
+    <h2 class="why-title" data-i18n="why_title">Good reasons to visit us</h2>
+    <div class="why-grid" id="whyGrid"></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <p class="menu-label" data-i18n="menu_label">What We Serve</p>
+    <h2 class="menu-title">Massimo's<br><em data-i18n="menu_title_em">Menu</em></h2>
+    <p class="menu-sub" data-i18n="menu_sub">Homemade pizza, Italian classics, snacks, desserts and drinks in the heart of Magaluf.</p>
+  </div>
+  <div class="cat-tabs" id="catTabs"></div>
+  <div class="menu-layout">
+    <div class="menu-grid" id="menuGrid"></div>
+    <aside class="order-summary">
+      <h3 class="summary-title" data-i18n="your_order">Your Order</h3>
+      <div class="order-list" id="orderList">
+        <p class="order-empty" id="orderEmpty" data-i18n="order_empty">No items selected yet.</p>
+      </div>
+      <div class="order-total">
+        <span data-i18n="estimated_total">Estimated total</span>
+        <strong id="orderTotal">€0.00</strong>
+      </div>
+      <div class="order-form">
+        <input id="oName" type="text" data-i18n-ph="form_name" placeholder="Name">
+        <input id="oPhone" type="tel" data-i18n-ph="form_phone" placeholder="Phone / WhatsApp">
+        <input id="oDate" type="date">
+        <input id="oTime" type="time">
+        <textarea id="oNotes" rows="3" data-i18n-ph="form_notes" placeholder="Pickup, location or order notes"></textarea>
+        <p class="order-note" data-i18n="order_note">Final availability and total must be confirmed by Massimo's.</p>
+        <button class="whatsapp-btn" onclick="sendWhatsApp()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.057 23.197a.75.75 0 00.922.899l5.353-1.464A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.95 0-3.77-.528-5.33-1.443l-.382-.225-3.18.869.882-3.181-.24-.392A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          <span data-i18n="send_order">Send Order Request</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- VISIT / LOCATION -->
+<section class="location-section" id="visit">
+  <div class="location-inner">
+    <p class="section-label" data-i18n="visit_label">Find Us</p>
+    <h2 class="location-title" data-i18n="visit_title">Come <em>visit us</em></h2>
+    <p class="location-text" data-i18n="visit_p1">Right in the heart of Magaluf. No bookings needed — just walk in.</p>
+    <p class="location-text" data-i18n="visit_p2">Open every day. Perfect before or after a night out.</p>
+    <a href="tel:+34611260259" class="btn-primary" style="display:inline-flex; margin-top: 24px;">+34 611 26 02 59</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img class="footer-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's">
+  <p class="footer-tag" data-i18n="footer_tag">Authentic Italian · Magaluf · No bookings needed</p>
+  <p class="footer-info">
+    <a href="tel:+34611260259">+34 611 26 02 59</a><br>
+    <span data-i18n="footer_hours">Open every day · Heart of Magaluf</span>
+  </p>
+</footer>
+
+<script>
+/* ======================================
+   TRANSLATIONS
+====================================== */
+const T = {
+  en: {
+    nav_story:"Our Story", nav_menu:"Menu", nav_visit:"Visit", nav_order:"Order Now",
+    hero_eyebrow:"Magaluf · Heart of the Island", hero_title_sub:"Pizzeria",
+    hero_sub:"Right in the heart of Magaluf. No bookings, just good pizza — fresh, fast, and full of flavor.",
+    hero_cta_menu:"View Menu", hero_cta_visit:"Visit Now", scroll:"Scroll",
+    about_label:"Our Passion",
+    about_title:"Crafting Pizza,\nCreating Memories",
+    about_p1:"At Massimo's, we believe pizza is more than food — it's an experience. We're dedicated to bringing authentic Italian flavors to Magaluf, using fresh, locally-sourced ingredients.",
+    about_p2:"Every dough stretched by hand, every sauce slow-cooked from scratch. Walk in, sit down, and let us do the rest.",
+    pizza_motto:"Made with\nlove & fire",
+    badge_fresh:"🍅 Fresh ingredients", badge_fire:"🔥 Wood-fired flavor", badge_authentic:"🇮🇹 Authentic recipes",
+    why_label:"Why Massimo's", why_title:"Good reasons to visit us",
+    why_items:[
+      {icon:"🍕", title:"Fresh Dough", desc:"Handmade every day, never frozen."},
+      {icon:"⚡", title:"Fast Service", desc:"In and out without the wait."},
+      {icon:"🌿", title:"Italian Flavors", desc:"Authentic recipes, quality ingredients."},
+      {icon:"📍", title:"Heart of Magaluf", desc:"No bookings. Just walk in."},
+      {icon:"🌙", title:"Perfect Any Time", desc:"Great before or after a night out."}
+    ],
+    menu_label:"What We Serve", menu_title_em:"Menu",
+    menu_sub:"Homemade pizza, Italian classics, snacks, desserts and drinks in the heart of Magaluf.",
+    cat_all:"All", cat_pizza:"Pizza", cat_white:"White Pizza", cat_special:"Special Pizza", cat_calzone:"Calzone",
+    cat_appetizer:"Appetizers", cat_burger_beef:"Beef Burgers", cat_burger_chicken:"Chicken Burgers",
+    cat_burger_veggie:"Veggie Burgers", cat_wrap:"Wraps", cat_panuozzo:"Panuozzo",
+    cat_homemade:"Homemade Dishes", cat_dessert:"Desserts",
+    your_order:"Your Order", order_empty:"No items selected yet.",
+    estimated_total:"Estimated total",
+    form_name:"Name", form_phone:"Phone / WhatsApp",
+    form_notes:"Pickup, location or order notes",
+    order_note:"Final availability and total must be confirmed by Massimo's.",
+    send_order:"Send Order Request",
+    add_btn:"Add",
+    visit_label:"Find Us", visit_title:"Come visit us",
+    visit_p1:"Right in the heart of Magaluf. No bookings needed — just walk in.",
+    visit_p2:"Open every day. Perfect before or after a night out.",
+    footer_tag:"Authentic Italian · Magaluf · No bookings needed",
+    footer_hours:"Open every day · Heart of Magaluf",
+    wa_greeting:"Hi, I want to place a Massimo's order request.",
+    wa_source:"Source: Massimo's Menu",
+    wa_type:"Request type: Food order request",
+    wa_name:"Name", wa_phone:"Phone / WhatsApp", wa_date:"Preferred date",
+    wa_time:"Preferred time", wa_notes:"Notes", wa_total:"Estimated total",
+    wa_order_title:"Order",
+    wa_confirm:"Please confirm availability and final total."
+  },
+  es: {
+    nav_story:"Nuestra Historia", nav_menu:"Menú", nav_visit:"Visítanos", nav_order:"Pedir Ahora",
+    hero_eyebrow:"Magaluf · En el corazón de la isla", hero_title_sub:"Pizzería",
+    hero_sub:"En el corazón de Magaluf. Sin reservas, solo buena pizza — fresca, rápida y llena de sabor.",
+    hero_cta_menu:"Ver Menú", hero_cta_visit:"Visítanos", scroll:"Scroll",
+    about_label:"Nuestra Pasión",
+    about_title:"Hacemos Pizza,\nCreamos Recuerdos",
+    about_p1:"En Massimo's creemos que la pizza es más que comida — es una experiencia. Traemos los auténticos sabores italianos a Magaluf con ingredientes frescos y locales.",
+    about_p2:"Cada masa estirada a mano, cada salsa cocida a fuego lento. Entra, siéntate y deja que nosotros hagamos el resto.",
+    pizza_motto:"Hecho con\namor y fuego",
+    badge_fresh:"🍅 Ingredientes frescos", badge_fire:"🔥 Sabor al horno", badge_authentic:"🇮🇹 Recetas auténticas",
+    why_label:"Por qué Massimo's", why_title:"Buenas razones para visitarnos",
+    why_items:[
+      {icon:"🍕", title:"Masa Fresca", desc:"Elaborada a mano cada día, nunca congelada."},
+      {icon:"⚡", title:"Servicio Rápido", desc:"Sin esperas innecesarias."},
+      {icon:"🌿", title:"Sabores Italianos", desc:"Recetas auténticas, ingredientes de calidad."},
+      {icon:"📍", title:"Centro de Magaluf", desc:"Sin reservas. Entra directamente."},
+      {icon:"🌙", title:"Perfecto Siempre", desc:"Ideal antes o después de una noche de fiesta."}
+    ],
+    menu_label:"Lo que servimos", menu_title_em:"Menú",
+    menu_sub:"Pizza casera, clásicos italianos, snacks, postres y bebidas en el corazón de Magaluf.",
+    cat_all:"Todo", cat_pizza:"Pizza", cat_white:"Pizza Blanca", cat_special:"Pizza Especial", cat_calzone:"Calzone",
+    cat_appetizer:"Entrantes", cat_burger_beef:"Burgers de Ternera", cat_burger_chicken:"Burgers de Pollo",
+    cat_burger_veggie:"Burgers Veganas", cat_wrap:"Wraps", cat_panuozzo:"Panuozzo",
+    cat_homemade:"Platos Caseros", cat_dessert:"Postres",
+    your_order:"Tu Pedido", order_empty:"Aún no has añadido nada.",
+    estimated_total:"Total estimado",
+    form_name:"Nombre", form_phone:"Teléfono / WhatsApp",
+    form_notes:"Notas de recogida, ubicación o pedido",
+    order_note:"La disponibilidad y el total final deben ser confirmados por Massimo's.",
+    send_order:"Enviar Pedido por WhatsApp",
+    add_btn:"Añadir",
+    visit_label:"Encuéntranos", visit_title:"Ven a visitarnos",
+    visit_p1:"En el corazón de Magaluf. Sin reservas — entra directamente.",
+    visit_p2:"Abierto todos los días. Perfecto antes o después de salir de noche.",
+    footer_tag:"Italiano auténtico · Magaluf · Sin reservas",
+    footer_hours:"Abierto todos los días · Centro de Magaluf",
+    wa_greeting:"Hola, quiero hacer una solicitud de pedido de Massimo's.",
+    wa_source:"Fuente: Menú Massimo's",
+    wa_type:"Tipo de solicitud: Pedido de comida",
+    wa_name:"Nombre", wa_phone:"Teléfono / WhatsApp", wa_date:"Fecha preferida",
+    wa_time:"Hora preferida", wa_notes:"Notas", wa_total:"Total estimado",
+    wa_order_title:"Pedido",
+    wa_confirm:"Por favor confirmad disponibilidad y total final."
+  },
+  it: {
+    nav_story:"La Nostra Storia", nav_menu:"Menu", nav_visit:"Vieni", nav_order:"Ordina Ora",
+    hero_eyebrow:"Magaluf · Nel cuore dell'isola", hero_title_sub:"Pizzeria",
+    hero_sub:"Nel cuore di Magaluf. Senza prenotazione, solo buona pizza — fresca, veloce e piena di sapore.",
+    hero_cta_menu:"Vedi il Menu", hero_cta_visit:"Vieni", scroll:"Scorri",
+    about_label:"La Nostra Passione",
+    about_title:"Creiamo Pizza,\nCreiamo Ricordi",
+    about_p1:"Da Massimo's crediamo che la pizza sia più di un cibo — è un'esperienza. Portiamo i sapori autentici italiani a Magaluf con ingredienti freschi e locali.",
+    about_p2:"Ogni impasto lavorato a mano, ogni salsa cotta a fuoco lento. Entra, siediti e lascia fare a noi.",
+    pizza_motto:"Fatto con\namore e fuoco",
+    badge_fresh:"🍅 Ingredienti freschi", badge_fire:"🔥 Sapore del forno", badge_authentic:"🇮🇹 Ricette autentiche",
+    why_label:"Perché Massimo's", why_title:"Buone ragioni per venirci a trovare",
+    why_items:[
+      {icon:"🍕", title:"Impasto Fresco", desc:"Fatto a mano ogni giorno, mai surgelato."},
+      {icon:"⚡", title:"Servizio Veloce", desc:"Senza attese inutili."},
+      {icon:"🌿", title:"Sapori Italiani", desc:"Ricette autentiche, ingredienti di qualità."},
+      {icon:"📍", title:"Centro di Magaluf", desc:"Senza prenotazione. Entra direttamente."},
+      {icon:"🌙", title:"Perfetto Sempre", desc:"Ideale prima o dopo una serata."}
+    ],
+    menu_label:"Cosa Serviamo", menu_title_em:"Menu",
+    menu_sub:"Pizza casalinga, classici italiani, snack, dolci e bevande nel cuore di Magaluf.",
+    cat_all:"Tutti", cat_pizza:"Pizza", cat_white:"Pizza Bianca", cat_special:"Pizza Speciale", cat_calzone:"Calzone",
+    cat_appetizer:"Antipasti", cat_burger_beef:"Burger di Manzo", cat_burger_chicken:"Burger di Pollo",
+    cat_burger_veggie:"Burger Vegano", cat_wrap:"Wrap", cat_panuozzo:"Panuozzo",
+    cat_homemade:"Piatti Casalinghi", cat_dessert:"Dolci",
+    your_order:"Il Tuo Ordine", order_empty:"Nessun articolo selezionato.",
+    estimated_total:"Totale stimato",
+    form_name:"Nome", form_phone:"Telefono / WhatsApp",
+    form_notes:"Note per il ritiro, la posizione o l'ordine",
+    order_note:"La disponibilità e il totale finale devono essere confermati da Massimo's.",
+    send_order:"Invia Ordine via WhatsApp",
+    add_btn:"Aggiungi",
+    visit_label:"Dove Siamo", visit_title:"Vieni a trovarci",
+    visit_p1:"Nel cuore di Magaluf. Nessuna prenotazione — entra direttamente.",
+    visit_p2:"Aperti tutti i giorni. Perfetto prima o dopo una serata.",
+    footer_tag:"Italiano autentico · Magaluf · Senza prenotazione",
+    footer_hours:"Aperti tutti i giorni · Centro di Magaluf",
+    wa_greeting:"Ciao, voglio fare un ordine da Massimo's.",
+    wa_source:"Fonte: Menu Massimo's",
+    wa_type:"Tipo di richiesta: Ordine cibo",
+    wa_name:"Nome", wa_phone:"Telefono / WhatsApp", wa_date:"Data preferita",
+    wa_time:"Ora preferita", wa_notes:"Note", wa_total:"Totale stimato",
+    wa_order_title:"Ordine",
+    wa_confirm:"Si prega di confermare disponibilità e totale finale."
+  },
+  fr: {
+    nav_story:"Notre Histoire", nav_menu:"Menu", nav_visit:"Nous Rendre Visite", nav_order:"Commander",
+    hero_eyebrow:"Magaluf · Au cœur de l'île", hero_title_sub:"Pizzeria",
+    hero_sub:"Au cœur de Magaluf. Sans réservation, juste de la bonne pizza — fraîche, rapide et pleine de saveurs.",
+    hero_cta_menu:"Voir le Menu", hero_cta_visit:"Nous Visiter", scroll:"Défiler",
+    about_label:"Notre Passion",
+    about_title:"Créer des Pizzas,\nCréer des Souvenirs",
+    about_p1:"Chez Massimo's, nous croyons que la pizza est plus qu'un repas — c'est une expérience. Nous apportons les saveurs authentiques italiennes à Magaluf avec des ingrédients frais et locaux.",
+    about_p2:"Chaque pâte étirée à la main, chaque sauce mijotée. Entrez, asseyez-vous et laissez-nous faire le reste.",
+    pizza_motto:"Fait avec\namour et feu",
+    badge_fresh:"🍅 Ingrédients frais", badge_fire:"🔥 Saveur du four", badge_authentic:"🇮🇹 Recettes authentiques",
+    why_label:"Pourquoi Massimo's", why_title:"De bonnes raisons de nous rendre visite",
+    why_items:[
+      {icon:"🍕", title:"Pâte Fraîche", desc:"Faite à la main chaque jour, jamais congelée."},
+      {icon:"⚡", title:"Service Rapide", desc:"Sans attente inutile."},
+      {icon:"🌿", title:"Saveurs Italiennes", desc:"Recettes authentiques, ingrédients de qualité."},
+      {icon:"📍", title:"Centre de Magaluf", desc:"Sans réservation. Entrez directement."},
+      {icon:"🌙", title:"Parfait à Tout Moment", desc:"Idéal avant ou après une soirée."}
+    ],
+    menu_label:"Ce que Nous Servons", menu_title_em:"Menu",
+    menu_sub:"Pizza maison, classiques italiens, snacks, desserts et boissons au cœur de Magaluf.",
+    cat_all:"Tout", cat_pizza:"Pizza", cat_white:"Pizza Blanche", cat_special:"Pizza Spéciale", cat_calzone:"Calzone",
+    cat_appetizer:"Entrées", cat_burger_beef:"Burgers Bœuf", cat_burger_chicken:"Burgers Poulet",
+    cat_burger_veggie:"Burgers Veggie", cat_wrap:"Wraps", cat_panuozzo:"Panuozzo",
+    cat_homemade:"Plats Maison", cat_dessert:"Desserts",
+    your_order:"Votre Commande", order_empty:"Aucun article sélectionné.",
+    estimated_total:"Total estimé",
+    form_name:"Nom", form_phone:"Téléphone / WhatsApp",
+    form_notes:"Notes de retrait, d'emplacement ou de commande",
+    order_note:"La disponibilité et le total final doivent être confirmés par Massimo's.",
+    send_order:"Envoyer la commande via WhatsApp",
+    add_btn:"Ajouter",
+    visit_label:"Nous Trouver", visit_title:"Venez nous rendre visite",
+    visit_p1:"Au cœur de Magaluf. Sans réservation — entrez directement.",
+    visit_p2:"Ouvert tous les jours. Parfait avant ou après une soirée.",
+    footer_tag:"Italien authentique · Magaluf · Sans réservation",
+    footer_hours:"Ouvert tous les jours · Centre de Magaluf",
+    wa_greeting:"Bonjour, je souhaite passer une commande chez Massimo's.",
+    wa_source:"Source : Menu Massimo's",
+    wa_type:"Type de demande : Commande de nourriture",
+    wa_name:"Nom", wa_phone:"Téléphone / WhatsApp", wa_date:"Date souhaitée",
+    wa_time:"Heure souhaitée", wa_notes:"Notes", wa_total:"Total estimé",
+    wa_order_title:"Commande",
+    wa_confirm:"Merci de confirmer la disponibilité et le total final."
+  },
+  de: {
+    nav_story:"Unsere Geschichte", nav_menu:"Speisekarte", nav_visit:"Besuchen", nav_order:"Jetzt Bestellen",
+    hero_eyebrow:"Magaluf · Im Herzen der Insel", hero_title_sub:"Pizzeria",
+    hero_sub:"Mitten in Magaluf. Keine Reservierung, nur gute Pizza — frisch, schnell und voller Geschmack.",
+    hero_cta_menu:"Zur Speisekarte", hero_cta_visit:"Uns Besuchen", scroll:"Scrollen",
+    about_label:"Unsere Leidenschaft",
+    about_title:"Pizza machen,\nErinnerungen schaffen",
+    about_p1:"Bei Massimo's glauben wir, dass Pizza mehr als Essen ist — es ist ein Erlebnis. Wir bringen authentische italienische Aromen nach Magaluf mit frischen, lokalen Zutaten.",
+    about_p2:"Jeder Teig von Hand gezogen, jede Soße langsam gekocht. Komm rein, setz dich und lass uns den Rest erledigen.",
+    pizza_motto:"Gemacht mit\nLiebe und Feuer",
+    badge_fresh:"🍅 Frische Zutaten", badge_fire:"🔥 Ofenfrischer Geschmack", badge_authentic:"🇮🇹 Authentische Rezepte",
+    why_label:"Warum Massimo's", why_title:"Gute Gründe uns zu besuchen",
+    why_items:[
+      {icon:"🍕", title:"Frischer Teig", desc:"Täglich handgemacht, nie gefroren."},
+      {icon:"⚡", title:"Schneller Service", desc:"Ohne unnötige Wartezeiten."},
+      {icon:"🌿", title:"Italienische Aromen", desc:"Authentische Rezepte, hochwertige Zutaten."},
+      {icon:"📍", title:"Zentrum von Magaluf", desc:"Keine Reservierung. Einfach reinkommen."},
+      {icon:"🌙", title:"Immer Perfekt", desc:"Ideal vor oder nach einem Abend aus."}
+    ],
+    menu_label:"Was Wir Anbieten", menu_title_em:"Speisekarte",
+    menu_sub:"Hausgemachte Pizza, italienische Klassiker, Snacks, Desserts und Getränke im Herzen von Magaluf.",
+    cat_all:"Alle", cat_pizza:"Pizza", cat_white:"Weiße Pizza", cat_special:"Special Pizza", cat_calzone:"Calzone",
+    cat_appetizer:"Vorspeisen", cat_burger_beef:"Rindfleisch-Burger", cat_burger_chicken:"Hähnchen-Burger",
+    cat_burger_veggie:"Veggie-Burger", cat_wrap:"Wraps", cat_panuozzo:"Panuozzo",
+    cat_homemade:"Hausgemachte Gerichte", cat_dessert:"Desserts",
+    your_order:"Ihre Bestellung", order_empty:"Noch keine Artikel ausgewählt.",
+    estimated_total:"Geschätzter Gesamtbetrag",
+    form_name:"Name", form_phone:"Telefon / WhatsApp",
+    form_notes:"Abhol-, Standort- oder Bestellhinweise",
+    order_note:"Verfügbarkeit und Gesamtbetrag müssen von Massimo's bestätigt werden.",
+    send_order:"Bestellung per WhatsApp senden",
+    add_btn:"Hinzufügen",
+    visit_label:"Uns Finden", visit_title:"Komm uns besuchen",
+    visit_p1:"Mitten in Magaluf. Keine Reservierung — einfach reinkommen.",
+    visit_p2:"Täglich geöffnet. Perfekt vor oder nach einem Abend aus.",
+    footer_tag:"Authentisch Italienisch · Magaluf · Keine Reservierung",
+    footer_hours:"Täglich geöffnet · Zentrum von Magaluf",
+    wa_greeting:"Hallo, ich möchte eine Bestellung bei Massimo's aufgeben.",
+    wa_source:"Quelle: Massimo's Speisekarte",
+    wa_type:"Anfragetyp: Essensbestellung",
+    wa_name:"Name", wa_phone:"Telefon / WhatsApp", wa_date:"Bevorzugtes Datum",
+    wa_time:"Bevorzugte Uhrzeit", wa_notes:"Hinweise", wa_total:"Geschätzter Gesamtbetrag",
+    wa_order_title:"Bestellung",
+    wa_confirm:"Bitte bestätigen Sie Verfügbarkeit und Gesamtbetrag."
+  }
+};
+
+/* ======================================
+   MENU DATA
+====================================== */
+const MENU = [
+  {id:"margherita", cat:"pizza", name:"Margherita", ing:"Tomato sauce, mozzarella, basil or oregano", price:7},
+  {id:"marinara", cat:"pizza", name:"Marinara", ing:"Tomato sauce, fresh garlic, oregano, EVOO", price:7},
+  {id:"diavola", cat:"pizza", name:"Diavola", ing:"Tomato sauce, mozzarella, spicy chorizo", price:9},
+  {id:"prosciutto", cat:"pizza", name:"Prosciutto e Funghi", ing:"Tomato sauce, cooked ham, mushrooms", price:9},
+  {id:"quattro", cat:"pizza", name:"Quattro Formaggi", ing:"Tomato sauce, mozzarella, gorgonzola, cheddar, gouda", price:10},
+  {id:"pepperoni", cat:"pizza", name:"Pepperoni", ing:"Tomato sauce, mozzarella, pepperoni", price:9},
+  {id:"tuna", cat:"pizza", name:"Tuna & Onion", ing:"Tomato sauce, mozzarella, tuna, red onion", price:9},
+  {id:"hawaiian", cat:"pizza", name:"Hawaiian", ing:"Tomato sauce, mozzarella, cooked ham, pineapple", price:9},
+  {id:"capricciosa", cat:"pizza", name:"Capricciosa", ing:"Tomato sauce, mozzarella, cooked ham, egg", price:10},
+  {id:"vegpizza", cat:"pizza", name:"Vegetarian", ing:"Tomato sauce, mozzarella, zucchini, eggplant, bell pepper, mushrooms, basil", price:9},
+  {id:"carbonara", cat:"white", name:"Carbonara", ing:"Mozzarella, cream, mushrooms, onion, bacon", price:10},
+  {id:"mimosa", cat:"white", name:"Mimosa", ing:"Mozzarella, cooked ham, sweetcorn", price:9},
+  {id:"boscaiola", cat:"white", name:"Boscaiola", ing:"Bacon, cooked ham, mushrooms, peas", price:9},
+  {id:"vegbianca", cat:"white", name:"Vegetarian Bianca", ing:"Mozzarella, bell pepper, zucchini, mushrooms, black olives, sweetcorn, basil", price:10},
+  {id:"mallorquina", cat:"special", name:"Mallorquina", ing:"Tomato sauce, sobrasada, goat cheese, honey", price:11},
+  {id:"italianclassic", cat:"special", name:"Italian Classic", ing:"Tomato sauce, mozzarella, cherry tomatoes, arugula, serrano ham, buffalo mozzarella", price:12},
+  {id:"carnivora", cat:"special", name:"Carnívora", ing:"Tomato sauce, mozzarella, ground beef, chicken, ham, bacon, pepperoni, sausage", price:13},
+  {id:"cecina", cat:"special", name:"Cecina", ing:"Mozzarella, cherry tomatoes, arugula, cecina, parmesan flakes", price:12},
+  {id:"sixcheeses", cat:"special", name:"6 Cheeses", ing:"Mozzarella, cheddar, gorgonzola, parmesan, buffalo mozzarella", price:12},
+  {id:"calzone_classic", cat:"calzone", name:"Classic Calzone", ing:"Cooked ham, mushrooms, mozzarella, oregano", price:9},
+  {id:"calzone_cap", cat:"calzone", name:"Calzone Capricciosa", ing:"Black olives, mushrooms, cooked ham, mozzarella", price:9},
+  {id:"calzone_meat", cat:"calzone", name:"Meat Lover Calzone", ing:"Chicken, beef, pepperoni, cooked ham, sausage, mozzarella", price:11},
+  {id:"calzone_veg", cat:"calzone", name:"Vegetarian Calzone", ing:"Roasted seasonal vegetables, cheese", price:9},
+  {id:"garlic", cat:"appetizer", name:"Garlic Bread", ing:"Fresh garlic bread", price:4},
+  {id:"fries", cat:"appetizer", name:"French Fries", ing:"Golden crispy fries", price:4},
+  {id:"onion", cat:"appetizer", name:"Onion Rings (7)", ing:"Battered onion rings", price:5},
+  {id:"nuggets", cat:"appetizer", name:"Chicken Nuggets (7)", ing:"Breaded chicken nuggets", price:5},
+  {id:"fingers", cat:"appetizer", name:"Chicken Fingers (7)", ing:"Crispy chicken fingers", price:5},
+  {id:"wings", cat:"appetizer", name:"Chicken Wings (7)", ing:"Spicy chicken wings", price:6},
+  {id:"beef_classic", cat:"burger_beef", name:"Classic Beef Burger", ing:"Lettuce, tomato, beef patty", price:7},
+  {id:"beef_double", cat:"burger_beef", name:"Double Beef Burger", ing:"Lettuce, tomato, double beef patty", price:9},
+  {id:"beef_cheese", cat:"burger_beef", name:"Beef Burger with Cheese", ing:"Lettuce, tomato, beef patty, cheese", price:8},
+  {id:"beef_dbl_cheese", cat:"burger_beef", name:"Double Beef with Cheese", ing:"Lettuce, tomato, double beef patty, cheese", price:10},
+  {id:"beef_bacon", cat:"burger_beef", name:"Crispy Bacon Beef", ing:"Lettuce, tomato, beef patty, cheese, bacon", price:9},
+  {id:"beef_dbl_bacon", cat:"burger_beef", name:"Double Crispy Bacon Beef", ing:"Lettuce, tomato, double beef patty, cheese, bacon", price:11},
+  {id:"massimos_beef", cat:"burger_beef", name:"Massimo's Burger", ing:"Lettuce, tomato, beef, cheese, bacon, egg, crispy onion", price:12},
+  {id:"massimos_dbl", cat:"burger_beef", name:"Massimo's Double", ing:"Same with double beef patty", price:14},
+  {id:"chk_classic", cat:"burger_chicken", name:"Classic Chicken Burger", ing:"Lettuce, tomato, chicken patty", price:7},
+  {id:"chk_double", cat:"burger_chicken", name:"Double Chicken Burger", ing:"Lettuce, tomato, double chicken patty", price:9},
+  {id:"chk_cheese", cat:"burger_chicken", name:"Chicken Burger with Cheese", ing:"Lettuce, tomato, chicken patty, cheese", price:8},
+  {id:"chk_dbl_cheese", cat:"burger_chicken", name:"Double Chicken with Cheese", ing:"Lettuce, tomato, double chicken patty, cheese", price:10},
+  {id:"chk_bacon", cat:"burger_chicken", name:"Crispy Bacon Chicken", ing:"Lettuce, tomato, chicken, cheese, bacon", price:9},
+  {id:"chk_dbl_bacon", cat:"burger_chicken", name:"Double Crispy Bacon Chicken", ing:"Lettuce, tomato, double chicken, cheese, bacon", price:11},
+  {id:"massimos_chk", cat:"burger_chicken", name:"Massimo's Chicken", ing:"Lettuce, tomato, chicken, cheese, bacon, egg, crispy onion", price:12},
+  {id:"massimos_chk_dbl", cat:"burger_chicken", name:"Massimo's Chicken Double", ing:"Same with double chicken patty", price:14},
+  {id:"veggie_burger", cat:"burger_veggie", name:"Veggie Burger", ing:"Lettuce, tomato, veggie patty", price:7},
+  {id:"veggie_cheese", cat:"burger_veggie", name:"Veggie Burger with Cheese", ing:"Lettuce, tomato, veggie patty, cheese", price:8},
+  {id:"wrap_grilled", cat:"wrap", name:"Grilled Chicken Wrap", ing:"Lettuce, tomato, mayo, grilled chicken, cheese", price:7},
+  {id:"wrap_crispy", cat:"wrap", name:"Crispy Chicken Wrap", ing:"Lettuce, tomato, mayo, breaded chicken, cheese", price:7},
+  {id:"wrap_veg", cat:"wrap", name:"Vegetarian Wrap", ing:"Roasted seasonal vegetables", price:7},
+  {id:"wrap_tuna", cat:"wrap", name:"Tuna Wrap", ing:"Lettuce, tomato, cheese or sweetcorn", price:7},
+  {id:"pan_caprese", cat:"panuozzo", name:"Caprese Panuozzo", ing:"Lettuce, tomato, buffalo mozzarella", price:8},
+  {id:"pan_serrano", cat:"panuozzo", name:"Serrano Panuozzo", ing:"Arugula, tomato, serrano ham, buffalo mozzarella", price:9},
+  {id:"pan_veg", cat:"panuozzo", name:"Vegetarian Panuozzo", ing:"Roasted vegetables, buffalo mozzarella", price:8},
+  {id:"lasagna", cat:"homemade", name:"Lasagna Bolognese", ing:"Classic Italian meat lasagna", price:10},
+  {id:"spaghetti", cat:"homemade", name:"Spaghetti & Meatballs", ing:"Spaghetti with meatballs in tomato sauce", price:10},
+  {id:"eggplant", cat:"homemade", name:"Eggplant Parmigiana", ing:"Baked eggplant with tomato and cheese", price:9},
+  {id:"tiramisu", cat:"dessert", name:"Tiramisù", ing:"Classic Italian tiramisù", price:5},
+  {id:"choc_crostata", cat:"dessert", name:"Chocolate Crostata", ing:"Shortcrust pastry filled with chocolate cream", price:4.5},
+  {id:"jam_crostata", cat:"dessert", name:"Jam Crostata", ing:"Shortcrust pastry filled with jam", price:4.5},
+  {id:"nutella", cat:"dessert", name:"Nutella Pizza", ing:"Pizza crust topped with Nutella and powdered sugar", price:6},
+];
+
+const CAT_KEYS = [
+  {id:"all", key:"cat_all"},
+  {id:"pizza", key:"cat_pizza"},
+  {id:"white", key:"cat_white"},
+  {id:"special", key:"cat_special"},
+  {id:"calzone", key:"cat_calzone"},
+  {id:"appetizer", key:"cat_appetizer"},
+  {id:"burger_beef", key:"cat_burger_beef"},
+  {id:"burger_chicken", key:"cat_burger_chicken"},
+  {id:"burger_veggie", key:"cat_burger_veggie"},
+  {id:"wrap", key:"cat_wrap"},
+  {id:"panuozzo", key:"cat_panuozzo"},
+  {id:"homemade", key:"cat_homemade"},
+  {id:"dessert", key:"cat_dessert"},
+];
+
+/* ======================================
+   STATE
+====================================== */
+let lang = "en";
+let activeFilter = "all";
+const order = new Map();
+
+/* ======================================
+   LANG
+====================================== */
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.textContent.toLowerCase() === l));
+  applyTranslations();
+  renderTabs();
+  renderMenu();
+  renderOrder();
+  renderWhy();
+}
+
+function t(key) { return (T[lang] && T[lang][key]) || T.en[key] || key; }
+
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    const val = t(key);
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      el.placeholder = val;
+    } else {
+      if (val.includes("\n")) {
+        el.innerHTML = val.split("\n").join("<br>");
+      } else {
+        el.textContent = val;
+      }
+    }
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    el.placeholder = t(el.getAttribute("data-i18n-ph"));
+  });
+}
+
+/* ======================================
+   WHY CARDS
+====================================== */
+function renderWhy() {
+  const g = document.getElementById("whyGrid");
+  const items = t("why_items");
+  g.innerHTML = items.map(w => `
+    <div class="why-card">
+      <div class="why-icon">${w.icon}</div>
+      <h4>${w.title}</h4>
+      <p>${w.desc}</p>
+    </div>
+  `).join("");
+}
+
+/* ======================================
+   TABS
+====================================== */
+function renderTabs() {
+  const el = document.getElementById("catTabs");
+  el.innerHTML = CAT_KEYS.map(c => `
+    <button class="cat-tab${activeFilter === c.id ? " active" : ""}" onclick="filterCat('${c.id}')">
+      ${t(c.key)}
+    </button>
+  `).join("");
+}
+
+function filterCat(id) {
+  activeFilter = id;
+  renderTabs();
+  renderMenu();
+}
+
+/* ======================================
+   MENU GRID
+====================================== */
+function fmtPrice(p) { return p === Math.floor(p) ? p + "€" : p.toFixed(1) + "€"; }
+
+function renderMenu() {
+  const grid = document.getElementById("menuGrid");
+  grid.innerHTML = "";
+
+  if (activeFilter === "all") {
+    CAT_KEYS.filter(c => c.id !== "all").forEach(c => {
+      const items = MENU.filter(i => i.cat === c.id);
+      if (!items.length) return;
+      const h = document.createElement("div");
+      h.className = "cat-heading-dark";
+      h.textContent = t(c.key);
+      grid.appendChild(h);
+      items.forEach(item => grid.appendChild(makeCard(item)));
+    });
+  } else {
+    MENU.filter(i => i.cat === activeFilter).forEach(item => grid.appendChild(makeCard(item)));
+  }
+}
+
+function makeCard(item) {
+  const div = document.createElement("article");
+  div.className = "menu-card";
+  div.innerHTML = `
+    <p class="card-name">${item.name}</p>
+    <p class="card-ing">${item.ing}</p>
+    <div class="card-bottom">
+      <span class="card-price">${fmtPrice(item.price)}</span>
+      <button class="add-btn" onclick="addItem('${item.id}')">${t("add_btn")}</button>
+    </div>
+  `;
+  return div;
+}
+
+/* ======================================
+   ORDER
+====================================== */
+function addItem(id) {
+  const item = MENU.find(i => i.id === id);
+  if (!item) return;
+  const existing = order.get(id) || { ...item, qty: 0 };
+  existing.qty += 1;
+  order.set(id, existing);
+  renderOrder();
+}
+
+function removeItem(id) {
+  const existing = order.get(id);
+  if (!existing) return;
+  existing.qty -= 1;
+  if (existing.qty <= 0) order.delete(id);
+  else order.set(id, existing);
+  renderOrder();
+}
+
+function renderOrder() {
+  const listEl = document.getElementById("orderList");
+  const totalEl = document.getElementById("orderTotal");
+  listEl.innerHTML = "";
+
+  if (order.size === 0) {
+    listEl.innerHTML = `<p class="order-empty">${t("order_empty")}</p>`;
+    totalEl.textContent = "€0.00";
+    return;
+  }
+
+  let total = 0;
+  order.forEach((item, id) => {
+    const sub = item.price * item.qty;
+    total += sub;
+    const row = document.createElement("div");
+    row.className = "order-row";
+    row.innerHTML = `
+      <div class="order-row-info">
+        <span class="order-row-name">${item.name}</span>
+        <span class="order-row-qty">${item.qty} × ${fmtPrice(item.price)}</span>
+      </div>
+      <span class="order-row-price">${fmtPrice(sub)}</span>
+      <button class="order-row-remove" onclick="removeItem('${id}')" title="Remove">−</button>
+    `;
+    listEl.appendChild(row);
+  });
+  totalEl.textContent = "€" + total.toFixed(2);
+}
+
+/* ======================================
+   WHATSAPP
+====================================== */
+function sendWhatsApp() {
+  if (order.size === 0) {
+    alert(t("order_empty"));
+    return;
+  }
+
+  const name  = document.getElementById("oName").value.trim();
+  const phone = document.getElementById("oPhone").value.trim();
+  const date  = document.getElementById("oDate").value;
+  const time  = document.getElementById("oTime").value;
+  const notes = document.getElementById("oNotes").value.trim();
+
+  let total = 0;
+  const lines = [];
+  order.forEach(item => {
+    const sub = item.price * item.qty;
+    total += sub;
+    lines.push(`  - ${item.name} x${item.qty}  →  €${sub.toFixed(2)}`);
+  });
+
+  const divider = "─────────────────────";
+  const parts = [
+    t("wa_greeting"),
+    divider,
+    name  ? `${t("wa_name")}: ${name}`   : null,
+    phone ? `${t("wa_phone")}: ${phone}` : null,
+    date  ? `${t("wa_date")}: ${date}`   : null,
+    time  ? `${t("wa_time")}: ${time}`   : null,
+    divider,
+    t("wa_order_title") + ":",
+    ...lines,
+    divider,
+    `${t("wa_total")}: €${total.toFixed(2)}`,
+    notes ? `${t("wa_notes")}: ${notes}` : null,
+    divider,
+    t("wa_confirm")
+  ].filter(l => l !== null).join("\n");
+
+  window.open(`https://wa.me/34611260259?text=${encodeURIComponent(parts)}`, "_blank");
+}
+
+/* ======================================
+   INIT
+====================================== */
+renderTabs();
+renderMenu();
+renderOrder();
+renderWhy();
+applyTranslations();
+</script>
+</body>
+</html>
