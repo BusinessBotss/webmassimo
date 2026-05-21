@@ -85,7 +85,8 @@ nav {
     radial-gradient(ellipse 40% 40% at 20% 80%, rgba(216,155,69,0.09) 0%, transparent 50%);
 }
 .hero-logo-img {
-  height: 120px; width: auto; margin-bottom: 32px;
+  max-height: 130px; height: auto; width: auto; max-width: 86vw; margin-bottom: 32px;
+  object-fit: contain;
   opacity: 0; animation: fadeUp 0.9s 0.1s ease forwards;
 }
 .hero-eyebrow {
@@ -128,6 +129,15 @@ nav {
 }
 .btn-secondary:hover { border-color: var(--ember); color: var(--ember); }
 
+.hero-food-img-wrap {
+  margin-top: 48px; width: 100%; max-width: 700px;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(184,50,38,0.18);
+  opacity: 0; animation: fadeUp 0.9s 0.9s ease forwards;
+}
+.hero-food-img { width: 100%; height: 340px; object-fit: cover; object-position: center; display: block; }
+@media (max-width: 600px) { .hero-food-img { height: 220px; } }
+
 .hero-scroll {
   position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -151,19 +161,15 @@ nav {
 .about-text { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 14px; }
 
 .about-visual { position: relative; height: 460px; display: flex; align-items: center; justify-content: center; }
-.pizza-circle {
-  width: 320px; height: 320px; border-radius: 50%;
-  background: conic-gradient(from 0deg, #D4A843, #C94B1F, #8B2E0F, #D4A843, #C94B1F, #D4A843);
-  display: flex; align-items: center; justify-content: center;
+.about-img-wrap {
+  position: relative; width: 100%; height: 100%;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(28,26,22,0.18);
 }
-.pizza-inner {
-  width: 210px; height: 210px; border-radius: 50%;
-  background: radial-gradient(circle, #C94B1F 0%, #8B2E0F 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.pizza-text {
-  font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic;
-  color: rgba(255,255,255,0.9); text-align: center; line-height: 1.5;
+.about-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
 }
 .pizza-badge {
   position: absolute; padding: 9px 16px;
@@ -190,7 +196,7 @@ nav {
   background: rgba(255,255,255,0.05); border: 1px solid var(--dark-border);
   border-radius: 8px; padding: 28px 22px; text-align: center;
 }
-.why-icon { font-size: 28px; margin-bottom: 12px; }
+.why-icon { width: 36px; height: 36px; margin: 0 auto 16px; color: var(--gold); }
 .why-card h4 { font-size: 16px; font-weight: 500; color: var(--warm-text); margin-bottom: 8px; }
 .why-card p { font-size: 14px; color: rgba(255,247,232,0.55); line-height: 1.6; }
 
@@ -251,6 +257,33 @@ nav {
   min-height: 160px; transition: transform 0.2s;
 }
 .menu-card:hover { transform: translateY(-3px); }
+.menu-card__image {
+  width: 100%; height: 150px;
+  object-fit: cover; object-position: center;
+  border-radius: 10px; margin-bottom: 14px;
+  display: block;
+}
+@media (max-width: 480px) { .menu-card__image { height: 130px; } }
+.cat-img-header {
+  grid-column: 1/-1; position: relative;
+  border-radius: 14px; overflow: hidden;
+  height: 160px; margin-bottom: 4px; margin-top: 12px;
+}
+.cat-img-header img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.cat-img-header-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(18,13,9,0.85) 0%, rgba(18,13,9,0.3) 100%);
+  display: flex; align-items: center; padding: 0 28px;
+}
+.cat-img-header-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700; font-style: italic;
+  color: #f4ead7;
+}
 .card-name {
   font-family: 'Playfair Display', serif;
   font-size: 18px; font-weight: 700; color: var(--green); margin-bottom: 6px; line-height: 1.2;
@@ -347,7 +380,14 @@ footer {
   padding: 56px 48px; background: var(--char);
   color: rgba(255,255,255,0.4); text-align: center;
 }
-.footer-logo-img { height: 56px; width: auto; margin-bottom: 14px; filter: brightness(0) invert(1); opacity: 0.85; }
+.footer-logo-wrap {
+  display: inline-block;
+  background: #f4ead7;
+  border-radius: 12px;
+  padding: 12px 24px;
+  margin-bottom: 20px;
+}
+.footer-logo-img { height: auto; max-height: 56px; width: auto; object-fit: contain; display: block; }
 .footer-tag { font-size: 14px; margin-bottom: 24px; }
 .footer-info { font-size: 13px; line-height: 2; }
 .footer-info a { color: var(--gold); text-decoration: none; }
@@ -364,9 +404,7 @@ footer {
   .nav-order-btn { display: none; }
   .hero { padding: 140px 24px 60px; }
   .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
-  .about-visual { height: 300px; }
-  .pizza-circle { width: 240px; height: 240px; }
-  .pizza-inner { width: 155px; height: 155px; }
+  .about-visual { height: 320px; }
   .why-section { padding: 60px 24px; }
   .menu-layout { grid-template-columns: 1fr; }
   .menu-grid { grid-template-columns: 1fr; }
@@ -375,9 +413,7 @@ footer {
   footer { padding: 48px 24px; }
 }
 @media (max-width: 480px) {
-  .hero-logo-img { height: 80px; }
-  .pizza-circle { width: 200px; height: 200px; }
-  .pizza-inner { width: 130px; height: 130px; }
+  .hero-logo-img { max-height: 90px; }
   .badge-1, .badge-2, .badge-3 { display: none; }
 }
 </style>
@@ -396,7 +432,7 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's Logo">
+    <img src="https://res.cloudinary.com/dqje367sj/image/upload/v1779352186/logomassimo_vpgncz.png" alt="Massimo's Logo">
   </a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav_story">Our Story</a></li>
@@ -409,13 +445,16 @@ footer {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
-  <img class="hero-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's">
+  <img class="hero-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779352186/logomassimo_vpgncz.png" alt="Massimo's">
   <p class="hero-eyebrow" data-i18n="hero_eyebrow">Magaluf · Heart of the Island</p>
   <h1 class="hero-title">Massimo's<br><em data-i18n="hero_title_sub">Pizzeria</em></h1>
   <p class="hero-sub" data-i18n="hero_sub">Right in the heart of Magaluf. No bookings, just good pizza — fresh, fast, and full of flavor.</p>
   <div class="hero-btns">
     <a href="#menu" class="btn-primary" data-i18n="hero_cta_menu">View Menu</a>
     <a href="#visit" class="btn-secondary" data-i18n="hero_cta_visit">Visit Now</a>
+  </div>
+  <div class="hero-food-img-wrap">
+    <img class="hero-food-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779386514/BE3EC238-67B1-4885-9533-BB1BBBC2DBF0_enuxqu.png" alt="Fresh Massimo's pizza in Magaluf">
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -432,14 +471,12 @@ footer {
     <p class="about-text" data-i18n="about_p2">Every dough stretched by hand, every sauce slow-cooked from scratch. Walk in, sit down, and let us do the rest.</p>
   </div>
   <div class="about-visual">
-    <div class="pizza-circle">
-      <div class="pizza-inner">
-        <p class="pizza-text" data-i18n="pizza_motto">Made with<br>love &amp; fire</p>
-      </div>
+    <div class="about-img-wrap">
+      <img class="about-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779386512/398E24D9-895D-49F6-9B5C-03F567ADE9E1_txotnc.png" alt="Artisan bread and fresh dough at Massimo's">
     </div>
-    <div class="pizza-badge badge-1" data-i18n="badge_fresh">🍅 Fresh ingredients</div>
-    <div class="pizza-badge badge-2" data-i18n="badge_fire">🔥 Wood-fired flavor</div>
-    <div class="pizza-badge badge-3" data-i18n="badge_authentic">🇮🇹 Authentic recipes</div>
+    <div class="pizza-badge badge-1" data-i18n="badge_fresh">Fresh ingredients</div>
+    <div class="pizza-badge badge-2" data-i18n="badge_fire">Wood-fired flavor</div>
+    <div class="pizza-badge badge-3" data-i18n="badge_authentic">Authentic recipes</div>
   </div>
 </section>
 
@@ -500,7 +537,9 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <img class="footer-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779314049/Screenshot_2026-05-20_at_23.52.44_o6c1fd.png" alt="Massimo's">
+  <div class="footer-logo-wrap">
+    <img class="footer-logo-img" src="https://res.cloudinary.com/dqje367sj/image/upload/v1779352186/logomassimo_vpgncz.png" alt="Massimo's">
+  </div>
   <p class="footer-tag" data-i18n="footer_tag">Authentic Italian · Magaluf · No bookings needed</p>
   <p class="footer-info">
     <a href="tel:+34611260259">+34 611 26 02 59</a><br>
@@ -523,14 +562,14 @@ const T = {
     about_p1:"At Massimo's, we believe pizza is more than food — it's an experience. We're dedicated to bringing authentic Italian flavors to Magaluf, using fresh, locally-sourced ingredients.",
     about_p2:"Every dough stretched by hand, every sauce slow-cooked from scratch. Walk in, sit down, and let us do the rest.",
     pizza_motto:"Made with\nlove & fire",
-    badge_fresh:"🍅 Fresh ingredients", badge_fire:"🔥 Wood-fired flavor", badge_authentic:"🇮🇹 Authentic recipes",
+    badge_fresh:"Fresh ingredients", badge_fire:"Wood-fired flavor", badge_authentic:"Authentic recipes",
     why_label:"Why Massimo's", why_title:"Good reasons to visit us",
     why_items:[
-      {icon:"🍕", title:"Fresh Dough", desc:"Handmade every day, never frozen."},
-      {icon:"⚡", title:"Fast Service", desc:"In and out without the wait."},
-      {icon:"🌿", title:"Italian Flavors", desc:"Authentic recipes, quality ingredients."},
-      {icon:"📍", title:"Heart of Magaluf", desc:"No bookings. Just walk in."},
-      {icon:"🌙", title:"Perfect Any Time", desc:"Great before or after a night out."}
+      {icon:"—", title:"Fresh Dough", desc:"Handmade every day, never frozen."},
+      {icon:"—", title:"Fast Service", desc:"In and out without the wait."},
+      {icon:"—", title:"Italian Flavors", desc:"Authentic recipes, quality ingredients."},
+      {icon:"—", title:"Heart of Magaluf", desc:"No bookings. Just walk in."},
+      {icon:"—", title:"Perfect Any Time", desc:"Great before or after a night out."}
     ],
     menu_label:"What We Serve", menu_title_em:"Menu",
     menu_sub:"Homemade pizza, Italian classics, snacks, desserts and drinks in the heart of Magaluf.",
@@ -568,14 +607,14 @@ const T = {
     about_p1:"En Massimo's creemos que la pizza es más que comida — es una experiencia. Traemos los auténticos sabores italianos a Magaluf con ingredientes frescos y locales.",
     about_p2:"Cada masa estirada a mano, cada salsa cocida a fuego lento. Entra, siéntate y deja que nosotros hagamos el resto.",
     pizza_motto:"Hecho con\namor y fuego",
-    badge_fresh:"🍅 Ingredientes frescos", badge_fire:"🔥 Sabor al horno", badge_authentic:"🇮🇹 Recetas auténticas",
+    badge_fresh:"Ingredientes frescos", badge_fire:"Sabor al horno", badge_authentic:"Recetas auténticas",
     why_label:"Por qué Massimo's", why_title:"Buenas razones para visitarnos",
     why_items:[
-      {icon:"🍕", title:"Masa Fresca", desc:"Elaborada a mano cada día, nunca congelada."},
-      {icon:"⚡", title:"Servicio Rápido", desc:"Sin esperas innecesarias."},
-      {icon:"🌿", title:"Sabores Italianos", desc:"Recetas auténticas, ingredientes de calidad."},
-      {icon:"📍", title:"Centro de Magaluf", desc:"Sin reservas. Entra directamente."},
-      {icon:"🌙", title:"Perfecto Siempre", desc:"Ideal antes o después de una noche de fiesta."}
+      {icon:"—", title:"Masa Fresca", desc:"Elaborada a mano cada día, nunca congelada."},
+      {icon:"—", title:"Servicio Rápido", desc:"Sin esperas innecesarias."},
+      {icon:"—", title:"Sabores Italianos", desc:"Recetas auténticas, ingredientes de calidad."},
+      {icon:"—", title:"Centro de Magaluf", desc:"Sin reservas. Entra directamente."},
+      {icon:"—", title:"Perfecto Siempre", desc:"Ideal antes o después de una noche de fiesta."}
     ],
     menu_label:"Lo que servimos", menu_title_em:"Menú",
     menu_sub:"Pizza casera, clásicos italianos, snacks, postres y bebidas en el corazón de Magaluf.",
@@ -613,14 +652,14 @@ const T = {
     about_p1:"Da Massimo's crediamo che la pizza sia più di un cibo — è un'esperienza. Portiamo i sapori autentici italiani a Magaluf con ingredienti freschi e locali.",
     about_p2:"Ogni impasto lavorato a mano, ogni salsa cotta a fuoco lento. Entra, siediti e lascia fare a noi.",
     pizza_motto:"Fatto con\namore e fuoco",
-    badge_fresh:"🍅 Ingredienti freschi", badge_fire:"🔥 Sapore del forno", badge_authentic:"🇮🇹 Ricette autentiche",
+    badge_fresh:"Ingredienti freschi", badge_fire:"Sapore del forno", badge_authentic:"Ricette autentiche",
     why_label:"Perché Massimo's", why_title:"Buone ragioni per venirci a trovare",
     why_items:[
-      {icon:"🍕", title:"Impasto Fresco", desc:"Fatto a mano ogni giorno, mai surgelato."},
-      {icon:"⚡", title:"Servizio Veloce", desc:"Senza attese inutili."},
-      {icon:"🌿", title:"Sapori Italiani", desc:"Ricette autentiche, ingredienti di qualità."},
-      {icon:"📍", title:"Centro di Magaluf", desc:"Senza prenotazione. Entra direttamente."},
-      {icon:"🌙", title:"Perfetto Sempre", desc:"Ideale prima o dopo una serata."}
+      {icon:"—", title:"Impasto Fresco", desc:"Fatto a mano ogni giorno, mai surgelato."},
+      {icon:"—", title:"Servizio Veloce", desc:"Senza attese inutili."},
+      {icon:"—", title:"Sapori Italiani", desc:"Ricette autentiche, ingredienti di qualità."},
+      {icon:"—", title:"Centro di Magaluf", desc:"Senza prenotazione. Entra direttamente."},
+      {icon:"—", title:"Perfetto Sempre", desc:"Ideale prima o dopo una serata."}
     ],
     menu_label:"Cosa Serviamo", menu_title_em:"Menu",
     menu_sub:"Pizza casalinga, classici italiani, snack, dolci e bevande nel cuore di Magaluf.",
@@ -658,14 +697,14 @@ const T = {
     about_p1:"Chez Massimo's, nous croyons que la pizza est plus qu'un repas — c'est une expérience. Nous apportons les saveurs authentiques italiennes à Magaluf avec des ingrédients frais et locaux.",
     about_p2:"Chaque pâte étirée à la main, chaque sauce mijotée. Entrez, asseyez-vous et laissez-nous faire le reste.",
     pizza_motto:"Fait avec\namour et feu",
-    badge_fresh:"🍅 Ingrédients frais", badge_fire:"🔥 Saveur du four", badge_authentic:"🇮🇹 Recettes authentiques",
+    badge_fresh:"Ingrédients frais", badge_fire:"Saveur du four", badge_authentic:"Recettes authentiques",
     why_label:"Pourquoi Massimo's", why_title:"De bonnes raisons de nous rendre visite",
     why_items:[
-      {icon:"🍕", title:"Pâte Fraîche", desc:"Faite à la main chaque jour, jamais congelée."},
-      {icon:"⚡", title:"Service Rapide", desc:"Sans attente inutile."},
-      {icon:"🌿", title:"Saveurs Italiennes", desc:"Recettes authentiques, ingrédients de qualité."},
-      {icon:"📍", title:"Centre de Magaluf", desc:"Sans réservation. Entrez directement."},
-      {icon:"🌙", title:"Parfait à Tout Moment", desc:"Idéal avant ou après une soirée."}
+      {icon:"—", title:"Pâte Fraîche", desc:"Faite à la main chaque jour, jamais congelée."},
+      {icon:"—", title:"Service Rapide", desc:"Sans attente inutile."},
+      {icon:"—", title:"Saveurs Italiennes", desc:"Recettes authentiques, ingrédients de qualité."},
+      {icon:"—", title:"Centre de Magaluf", desc:"Sans réservation. Entrez directement."},
+      {icon:"—", title:"Parfait à Tout Moment", desc:"Idéal avant ou après une soirée."}
     ],
     menu_label:"Ce que Nous Servons", menu_title_em:"Menu",
     menu_sub:"Pizza maison, classiques italiens, snacks, desserts et boissons au cœur de Magaluf.",
@@ -703,14 +742,14 @@ const T = {
     about_p1:"Bei Massimo's glauben wir, dass Pizza mehr als Essen ist — es ist ein Erlebnis. Wir bringen authentische italienische Aromen nach Magaluf mit frischen, lokalen Zutaten.",
     about_p2:"Jeder Teig von Hand gezogen, jede Soße langsam gekocht. Komm rein, setz dich und lass uns den Rest erledigen.",
     pizza_motto:"Gemacht mit\nLiebe und Feuer",
-    badge_fresh:"🍅 Frische Zutaten", badge_fire:"🔥 Ofenfrischer Geschmack", badge_authentic:"🇮🇹 Authentische Rezepte",
+    badge_fresh:"Frische Zutaten", badge_fire:"Ofenfrischer Geschmack", badge_authentic:"Authentische Rezepte",
     why_label:"Warum Massimo's", why_title:"Gute Gründe uns zu besuchen",
     why_items:[
-      {icon:"🍕", title:"Frischer Teig", desc:"Täglich handgemacht, nie gefroren."},
-      {icon:"⚡", title:"Schneller Service", desc:"Ohne unnötige Wartezeiten."},
-      {icon:"🌿", title:"Italienische Aromen", desc:"Authentische Rezepte, hochwertige Zutaten."},
-      {icon:"📍", title:"Zentrum von Magaluf", desc:"Keine Reservierung. Einfach reinkommen."},
-      {icon:"🌙", title:"Immer Perfekt", desc:"Ideal vor oder nach einem Abend aus."}
+      {icon:"—", title:"Frischer Teig", desc:"Täglich handgemacht, nie gefroren."},
+      {icon:"—", title:"Schneller Service", desc:"Ohne unnötige Wartezeiten."},
+      {icon:"—", title:"Italienische Aromen", desc:"Authentische Rezepte, hochwertige Zutaten."},
+      {icon:"—", title:"Zentrum von Magaluf", desc:"Keine Reservierung. Einfach reinkommen."},
+      {icon:"—", title:"Immer Perfekt", desc:"Ideal vor oder nach einem Abend aus."}
     ],
     menu_label:"Was Wir Anbieten", menu_title_em:"Speisekarte",
     menu_sub:"Hausgemachte Pizza, italienische Klassiker, Snacks, Desserts und Getränke im Herzen von Magaluf.",
@@ -738,6 +777,50 @@ const T = {
     wa_order_title:"Bestellung",
     wa_confirm:"Bitte bestätigen Sie Verfügbarkeit und Gesamtbetrag."
   }
+};
+
+/* ======================================
+   IMAGES
+====================================== */
+const IMGS = {
+  logo:         "https://res.cloudinary.com/dqje367sj/image/upload/v1779352186/logomassimo_vpgncz.png",
+  pizzaHero:    "https://res.cloudinary.com/dqje367sj/image/upload/v1779386514/BE3EC238-67B1-4885-9533-BB1BBBC2DBF0_enuxqu.png",
+  pizzaCat:     "https://res.cloudinary.com/dqje367sj/image/upload/v1779386514/BD8C87FC-8609-4296-9067-2B4F7D445684_agytoq.png",
+  pizzaHigh:    "https://res.cloudinary.com/dqje367sj/image/upload/v1779386512/ADF0E249-6CD4-4C09-9661-1996237D1CD7_t1tjla.png",
+  pizzaSec:     "https://res.cloudinary.com/dqje367sj/image/upload/v1779386510/1EF30549-E76F-4C0E-8A23-70D1A4B13528_za5yne.png",
+  streetFood:   "https://res.cloudinary.com/dqje367sj/image/upload/v1779386512/AF5ABB40-F648-4CED-A1FF-69BDA612BB81_wqabgy.png",
+  lasagna:      "https://res.cloudinary.com/dqje367sj/image/upload/v1779386510/A7592FAA-2267-478F-8854-A3759C115C17_es3187.png",
+  bread:        "https://res.cloudinary.com/dqje367sj/image/upload/v1779386512/398E24D9-895D-49F6-9B5C-03F567ADE9E1_txotnc.png"
+};
+
+// Category header images (null = text-only heading)
+const CAT_HEADER_IMG = {
+  pizza:          IMGS.pizzaCat,
+  white:          IMGS.pizzaSec,
+  special:        IMGS.pizzaHigh,
+  calzone:        IMGS.pizzaSec,
+  appetizer:      IMGS.bread,
+  burger_beef:    IMGS.streetFood,
+  burger_chicken: IMGS.streetFood,
+  burger_veggie:  IMGS.streetFood,
+  wrap:           IMGS.streetFood,
+  panuozzo:       IMGS.bread,
+  homemade:       IMGS.lasagna,
+  dessert:        null
+};
+
+// Per-item card images (only selected key items)
+const CARD_IMG = {
+  margherita:    IMGS.pizzaHero,
+  mallorquina:   IMGS.pizzaHigh,
+  italianclassic:IMGS.pizzaCat,
+  carnivora:     IMGS.pizzaSec,
+  lasagna:       IMGS.lasagna,
+  garlic:        IMGS.bread,
+  pan_caprese:   IMGS.bread,
+  pan_serrano:   IMGS.bread,
+  massimos_beef: IMGS.streetFood,
+  massimos_chk:  IMGS.streetFood,
 };
 
 /* ======================================
@@ -867,12 +950,20 @@ function applyTranslations() {
 /* ======================================
    WHY CARDS
 ====================================== */
+const WHY_ICONS = [
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>`
+];
+
 function renderWhy() {
   const g = document.getElementById("whyGrid");
   const items = t("why_items");
-  g.innerHTML = items.map(w => `
+  g.innerHTML = items.map((w, i) => `
     <div class="why-card">
-      <div class="why-icon">${w.icon}</div>
+      <div class="why-icon">${WHY_ICONS[i]}</div>
       <h4>${w.title}</h4>
       <p>${w.desc}</p>
     </div>
@@ -910,10 +1001,20 @@ function renderMenu() {
     CAT_KEYS.filter(c => c.id !== "all").forEach(c => {
       const items = MENU.filter(i => i.cat === c.id);
       if (!items.length) return;
-      const h = document.createElement("div");
-      h.className = "cat-heading-dark";
-      h.textContent = t(c.key);
-      grid.appendChild(h);
+      const img = CAT_HEADER_IMG[c.id];
+      const heading = document.createElement("div");
+      if (img) {
+        heading.className = "cat-img-header";
+        heading.innerHTML = `
+          <img src="${img}" alt="${t(c.key)}">
+          <div class="cat-img-header-overlay">
+            <span class="cat-img-header-label">${t(c.key)}</span>
+          </div>`;
+      } else {
+        heading.className = "cat-heading-dark";
+        heading.textContent = t(c.key);
+      }
+      grid.appendChild(heading);
       items.forEach(item => grid.appendChild(makeCard(item)));
     });
   } else {
@@ -924,7 +1025,10 @@ function renderMenu() {
 function makeCard(item) {
   const div = document.createElement("article");
   div.className = "menu-card";
+  const img = CARD_IMG[item.id];
+  const imgHTML = img ? `<img class="menu-card__image" src="${img}" alt="${item.name}">` : "";
   div.innerHTML = `
+    ${imgHTML}
     <p class="card-name">${item.name}</p>
     <p class="card-ing">${item.ing}</p>
     <div class="card-bottom">
